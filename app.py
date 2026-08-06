@@ -10,9 +10,6 @@ load_dotenv()
 # TMDB API KEY
 API_KEY = os.getenv("TMDB_API_KEY")
 
-if API_KEY is None:
-    API_KEY = st.secrets["TMDB_API_KEY"]
-
 # Load Data
 movies = pickle.load(open("movies.pkl", "rb"))
 similarity = pickle.load(open("similarity.pkl", "rb"))
