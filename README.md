@@ -2,24 +2,27 @@
 
 A Content-Based Movie Recommendation System built using Machine Learning and Streamlit. The application recommends the top 5 movies similar to a selected movie based on movie metadata and displays their posters using the TMDB API.
 
+---
 
 ## Preview
 
 ### Recommendation Example 1
 
-[Recommendation Example 1](images/homepage1.png)
+![Recommendation Example 1](images/homepage1.png)
 
 ### Recommendation Example 2
 
-[Recommendation Example 2](images/homepage2.png)
+![Recommendation Example 2](images/homepage2.png)
+
+---
 
 ## Features
 
-- Recommend Top 5 similar movies
-- Display movie posters using TMDB API
+- Recommend Top 5 Similar Movies
+- Display Movie Posters using TMDB API
 - Content-Based Recommendation System
-- Interactive Streamlit interface
-- Fast recommendations using Cosine Similarity
+- Interactive Streamlit Interface
+- Fast Recommendations using Cosine Similarity
 
 ---
 
@@ -53,7 +56,7 @@ A Content-Based Movie Recommendation System built using Machine Learning and Str
 6. Convert text into vectors using CountVectorizer.
 7. Compute Cosine Similarity.
 8. Save processed data as `movies.pkl` and `similarity.pkl`.
-9. Display recommendations using Streamlit.
+9. Display movie recommendations using Streamlit.
 
 ---
 
@@ -76,7 +79,7 @@ MovieRecommendationProject/
     └── homepage2.png
 ```
 
-> **Note:** `similarity.pkl` is not included in this repository because it exceeds GitHub's file size limit (100 MB). Generate it locally by running `main.py`.
+> **Note:** `similarity.pkl` is not included in this repository because it exceeds GitHub's 100 MB file size limit. Generate it locally by running `main.py`.
 
 ---
 
@@ -85,7 +88,7 @@ MovieRecommendationProject/
 Clone the repository
 
 ```bash
-git clone https://github.com/your-username/MovieRecommendationSystem.git
+git clone https://github.com/riteshmishra16/MovieRecommendationSystem.git
 ```
 
 Move into the project directory
@@ -100,33 +103,43 @@ Create a virtual environment
 python -m venv .venv
 ```
 
-Activate the virtual environment
-
-**Windows**
+Activate the virtual environment (Windows)
 
 ```bash
 .venv\Scripts\activate
 ```
 
-Install dependencies
+Install the required dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Create a `.env` file
+---
+
+## Environment Variables
+
+Create a `.env` file in the project root directory.
 
 ```env
 TMDB_API_KEY=YOUR_TMDB_API_KEY
 ```
 
-Generate the recommendation files
+You can refer to the `.env.example` file for the required format.
+
+---
+
+## Generate Recommendation Files
+
+Run the preprocessing script to generate the required pickle files.
 
 ```bash
 python main.py
 ```
 
-Run the application
+---
+
+## Run the Application
 
 ```bash
 streamlit run app.py
@@ -151,7 +164,3 @@ streamlit run app.py
 GitHub: https://github.com/riteshmishra16
 
 LinkedIn: https://www.linkedin.com/in/ritesh-kumar-mishra-234252349/
-
----
-
-If you found this project useful, consider giving it a ⭐.
