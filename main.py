@@ -16,10 +16,12 @@ print(credits.head())
 print(movies.shape)
 print(credits.shape)
 
+# Merge the datasets on the 'title' column
 movies = movies.merge(credits, on = 'title')
 print(movies.shape)
 print(movies.columns)
 
+# Select relevant columns for the recommendation system
 movies = movies[['movie_id', 'title', 'overview', 'genres', 'keywords' , 'cast' , 'crew']]
 print(movies.head())
 print(movies.isnull().sum())
@@ -27,6 +29,7 @@ movies.dropna(inplace=True)
 print(movies.isnull().sum())
 print(movies.duplicated().sum())
 
+# Function to convert string representation of list to actual list
 def convert(obj):
     L = []
     for i in ast.literal_eval(obj):
@@ -54,6 +57,7 @@ def convert3(text):
 movies['cast'] = movies['cast'].apply(convert3)
 print(movies['cast'].head())
 
+# Function to fetch the director's name from the crew data
 def fetch_director(text):
     L = []
 
@@ -82,6 +86,7 @@ movies['cast'] = movies['cast'].apply(collapse)
 movies['crew'] = movies['crew'].apply(collapse)
 print(movies['cast'].head())
 
+# Combine relevant text features into a single 'tags' column
 movies['tags'] = movies['overview'] + \
                  movies['genres'] + \
                  movies['keywords'] + \
@@ -92,6 +97,7 @@ print(movies['tags'].head())
 new_df = movies[['movie_id', 'title', 'tags']]
 print(new_df.head())
 
+# Preprocess the 'tags' column
 new_df['tags'] = new_df['tags'].apply(lambda x: " ".join(x))
 print(new_df['tags'].head())
 new_df['tags'] = new_df['tags'].apply(lambda x: x.lower())
@@ -109,12 +115,14 @@ def stem(text):
 
 new_df['tags'] = new_df['tags'].apply(stem)
 
+# Create document-term matrix
 cv = CountVectorizer(max_features=5000, stop_words='english')
 vectors = cv.fit_transform(new_df['tags']).toarray()
 print(vectors.shape)
 similarity = cosine_similarity(vectors)
 print(similarity.shape)
 
+# Function to recommend movies based on similarity
 def recommend(movie):
 
     movie_index = new_df[
@@ -133,6 +141,7 @@ def recommend(movie):
 
 recommend("Batman Begins")
 
+# Save the processed data and similarity matrix for later use
 pickle.dump(new_df, open("movies.pkl", "wb"))
 pickle.dump(similarity, open("similarity.pkl", "wb"))
 
